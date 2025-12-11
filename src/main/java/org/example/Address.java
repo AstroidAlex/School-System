@@ -1,13 +1,11 @@
 package org.example;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
 @EqualsAndHashCode
+@NoArgsConstructor
 public class Address {
     @Setter private int streetNo;
     @Setter private String street;
@@ -16,7 +14,7 @@ public class Address {
     private String postalCode;
 
     public void setPostalCode(String postalCode) { //required to check if is a valid postal code or not
-        this.postalCode = isPostalCodeValid(postalCode) ? postalCode : null;
+        this.postalCode = isPostalCodeValid(postalCode) ? postalCode.toUpperCase() : null;
     }
 
 
@@ -25,28 +23,28 @@ public class Address {
         this.street = street;
         this.city = city;
         this.province = province;
-        this.postalCode = isPostalCodeValid(postalCode) ? postalCode : null;
+        this.postalCode = isPostalCodeValid(postalCode) ? postalCode.toUpperCase() : null;
     }
 
     private static boolean isPostalCodeValid(String postalCode) {
         if (postalCode.length() != 6) {
             return false;
         }
-        char firstChar = postalCode.charAt(0);
-        char secondChar = postalCode.charAt(1);
-        char thirdChar = postalCode.charAt(2);
-        char fourthChar = postalCode.charAt(3);
-        char fifthChar = postalCode.charAt(4);
-        char lastChar = postalCode.charAt(5);
+        //use for loop...
+        int tempIdxTracker = 0;
+        for (char i : postalCode.toCharArray()){
+            if (!Character.isLetter(i) && tempIdxTracker % 2 == 0){
+                return false;
+            }
+            if (!Character.isDigit(i) && tempIdxTracker % 2 == 1) {
+                return false;
+            }
+            tempIdxTracker++;
+        }
 
-        if (!Character.isLetter(firstChar) || !Character.isLetter(thirdChar) || !Character.isLetter(fifthChar)) {
-            return false; //if any aren't a letter, it will return false
-        }
-        if (!Character.isDigit(secondChar) || !Character.isDigit(fourthChar) || !Character.isDigit(lastChar)) {
-            return false; //if any aren't a number, it will return false
-        }
 
         return true;
+
     }
 
     public enum Province{
