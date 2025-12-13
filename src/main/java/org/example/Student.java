@@ -14,7 +14,7 @@ public class Student {
     @Setter private Gender gender;
     @Setter private Address address;
     @Setter private Department department;
-    private ArrayList<Course> registeredCourses; //use method to set
+    @Setter private ArrayList<Course> registeredCourses; //use method to set
 
     private static int nextId = 0;
 
@@ -29,16 +29,34 @@ public class Student {
     }
 
     public boolean registerCourse(Course course){
-        return false;
+        if (registeredCourses.contains(course)) {
+            return false;
+        }
+        registeredCourses.add(course);
+        course.registerStudent(this);
+
+        return true;
     }
     public boolean dropCourse(Course course) {
-        return false;
+        if (!registeredCourses.contains(course)){
+            return false;
+        }
+
+        registeredCourses.remove(course);
+        course.getRegisteredStudents().remove(this);
+
+        return true;
     }
     public String toSimplifiedString(){
-        return null;
+        return String.format("Student Id: %s\n" +
+                "Student name: %s\n" +
+                "Department name: %s\n", studentId, studentName, department.getDepartmentName());
+
     }
     public String toString() {
-        return null;
+        String gender = this.gender.toString();
+        return String.format("Student Id: %s, Student name: %s,Gender:  %s, Address:  %s," +
+                " Department: %s, Registered courses: %s", studentId, studentName, gender, address, department, registeredCourses);
     }
 
     public enum Gender{
