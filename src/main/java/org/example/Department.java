@@ -12,14 +12,15 @@ public class Department {
 
     private static int nextId = 0;
 
+
     public void setDepartmentName(String departmentName) {
         this.departmentName = isDepartmentNameValid(departmentName) ? departmentName : null;
     }
 
     public Department(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {
-            this.departmentId = String.format("D%2d", nextId++);
-            this.departmentName = departmentName;
+            this.departmentId = String.format("D%02d", nextId++);
+            this.departmentName = Util.toTitleCase(departmentName);
         } else {
             this.departmentId = null;
             this.departmentName = null;
