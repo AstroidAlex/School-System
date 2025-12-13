@@ -1,4 +1,31 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Assignment {
+    private String assignmentId;
+    private String assignmentName;
+    private double weight;
+    private ArrayList<Integer> scores;
+
+    private static int nextId;
+
+    public void calcAssignmentAvg() {
+
+        return;
+    }
+    public void generateRandomScore() {
+        Random random = new Random();
+        int score = random.nextInt(0, 10);
+        int result = switch (score) {
+            case 0 -> random.nextInt(0, 60);
+            case 1,2 -> random.nextInt(60,70);
+            case 3,4 -> random.nextInt(70,80);
+            case 5,6,7,8 -> random.nextInt(80,90);
+            case 9,10 -> random.nextInt(90,100);
+            default -> 0;
+        }
+    }
+
 }
