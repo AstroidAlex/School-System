@@ -26,7 +26,7 @@ public class Address {
         this.postalCode = isPostalCodeValid(postalCode) ? postalCode.toUpperCase() : null;
     }
 
-    private static boolean isPostalCodeValid(String postalCode) {
+    public static boolean isPostalCodeValid(String postalCode) {
         if (postalCode.length() != 6) {
             return false;
         }
