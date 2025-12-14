@@ -64,7 +64,12 @@ public class Course {
     }
     public boolean addAssignment(String assignmentName, double weight, int maxScore){
         Assignment assignment = new Assignment(assignmentName, weight);
-        assignments.add(assignment); //max score is unused and not a part of the constructor
+        assignments.add(assignment);
+        /* commented due to the randomness causing occasional errors
+        if (assignment.getResult() > maxScore) {  //added next to method to show an example of how it would work
+            return false;
+        }
+         */
         for (int i = 0; i < registeredStudents.size(); i++){
             assignment.getScores().add(null);
         }

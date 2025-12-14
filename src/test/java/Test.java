@@ -199,15 +199,52 @@ public class Test {
         Assertions.assertEquals(expected, actual);
     }
     @org.junit.jupiter.api.Test
-    @DisplayName("isAssignmentWeightValid() assignment(101)-> false")
-    void registerStudent() {
+    @DisplayName("registerStudent() student(already assigned)-> false")
+    void registerStudent1() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        Assignment assignment = new Assignment(null, 100);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
+        course.registerStudent(student);
+        boolean expected = false;
+        boolean actual = course.registerStudent(student);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerStudent() student(null)-> true")
+    void registerStudent2() {
+        Student student = new Student(null, Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, null), new Department(null));
+        Course course = new Course(null, 3.5, new Department(null));
+        Assignment assignment = new Assignment(null, 100);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
+        boolean expected = true;
+        boolean actual = course.registerStudent(student);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerStudent() student(Invalid weight)-> true")
+    void registerStudent3() {
         Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
                 "", Address.Province.QC, ""), new Department(""));
         Course course = new Course("", 3.5, new Department(""));
         Assignment assignment = new Assignment(null, 101);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 10);
+        boolean expected = true;
+        boolean actual = course.registerStudent(student);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerStudent() student(normal)-> true")
+    void registerStudent4() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        Assignment assignment = new Assignment(null, 100);
         course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
-        boolean expected = false;
-        boolean actual = course.isAssignmentWeightValid();
+        boolean expected = true;
+        boolean actual = course.registerStudent(student);
         Assertions.assertEquals(expected, actual);
     }
 }

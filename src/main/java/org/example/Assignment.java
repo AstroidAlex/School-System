@@ -37,10 +37,11 @@ public class Assignment {
         this.average = (count == 0) ? 0 : (double) total / count;
         //avg remains unused due to constraints imposed by instructions
     }
+    private int result; //used to show an example of how to use maxscore in course.addAssignment
     public void generateRandomScore() {
         Random random = new Random();
         int score = random.nextInt(0, 10);
-        int result = switch (score) {
+        this.result = switch (score) {
             case 0 -> random.nextInt(0, 60);
             case 1,2 -> random.nextInt(60,70);
             case 3,4 -> random.nextInt(70,80);
