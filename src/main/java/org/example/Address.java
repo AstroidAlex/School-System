@@ -13,10 +13,9 @@ public class Address {
     @Setter private Province province;
     private String postalCode;
 
-    public void setPostalCode(String postalCode) { //required to check if is a valid postal code or not
+    public void setPostalCode(String postalCode) {
         this.postalCode = isPostalCodeValid(postalCode) ? postalCode.toUpperCase() : null;
     }
-
 
     public Address(int streetNo, String street, String city, Province province, String postalCode) {
         this.streetNo = streetNo;
@@ -26,11 +25,15 @@ public class Address {
         this.postalCode = isPostalCodeValid(postalCode) ? postalCode.toUpperCase() : null;
     }
 
+    /**
+     * Checks if the inputted postalCode is a valid one
+     * @param postalCode is the postal code as a String with no spaces
+     * @return if the postal code is a proper one or not
+     */
     public static boolean isPostalCodeValid(String postalCode) {
         if (postalCode == null || postalCode.length() != 6) {
             return false;
         }
-        //use for loop...
         int tempIdxTracker = 0;
         for (char i : postalCode.toCharArray()){
             if (!Character.isLetter(i) && tempIdxTracker % 2 == 0){
@@ -42,9 +45,7 @@ public class Address {
             tempIdxTracker++;
         }
 
-
         return true;
-
     }
 
     public enum Province{
