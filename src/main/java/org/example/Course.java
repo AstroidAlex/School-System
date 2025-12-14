@@ -17,7 +17,6 @@ public class Course {
     private Department department;
     private ArrayList<Assignment> assignments;
     private ArrayList<Student> registeredStudents;
-
     private static int nextId = 0;
 
     public Course(String courseName, double credits, Department department) {
@@ -44,12 +43,12 @@ public class Course {
         for (Assignment assignment : assignments) {
             assignment.getScores().add(null);
         }
-
         return true;
     }
     public int[] calcStudentsAverage() {
         int studentCount = registeredStudents.size();
         int[] finalScores = new int[studentCount];
+
         for (int i = 0; i < studentCount; i++){
             double total = 0;
             for (Assignment assignment : assignments) {
@@ -66,14 +65,12 @@ public class Course {
     public boolean addAssignment(String assignmentName, double weight, int maxScore){
         Assignment assignment = new Assignment(assignmentName, weight);
         assignments.add(assignment); //max score is unused and not a part of the constructor
-
         for (int i = 0; i < registeredStudents.size(); i++){
             assignment.getScores().add(null);
         }
         return true;
     }
     public void generateScores(){
-
         for (Assignment assignment : assignments){
             assignment.generateRandomScore();
         }
@@ -101,7 +98,6 @@ public class Course {
                     Integer score = assignment.getScores().get(i);
                     System.out.printf("%15s", score);
                 }
-
                 System.out.printf("%24d\n", finalScores[i]);
             }
         System.out.printf("%15s", "Average");

@@ -1,7 +1,4 @@
-import org.example.Address;
-import org.example.Course;
-import org.example.Department;
-import org.example.Student;
+import org.example.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
@@ -161,6 +158,52 @@ public class Test {
         boolean expected = true;
         student.registerCourse(course);
         boolean actual = student.dropCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("isAssignmentWeightValid() assignment(none)-> false")
+    void isAssignmentWeightValid1() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        boolean expected = false;
+        boolean actual = course.isAssignmentWeightValid();
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("isAssignmentWeightValid() assignment(100)-> true")
+    void isAssignmentWeightValid2() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        Assignment assignment = new Assignment(null, 100);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
+        boolean expected = true;
+        boolean actual = course.isAssignmentWeightValid();
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("isAssignmentWeightValid() assignment(10)-> false")
+    void isAssignmentWeightValid3() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        Assignment assignment = new Assignment(null, 10);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
+        boolean expected = false;
+        boolean actual = course.isAssignmentWeightValid();
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("isAssignmentWeightValid() assignment(101)-> false")
+    void isAssignmentWeightValid4() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        Assignment assignment = new Assignment(null, 101);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
+        boolean expected = false;
+        boolean actual = course.isAssignmentWeightValid();
         Assertions.assertEquals(expected, actual);
     }
 }

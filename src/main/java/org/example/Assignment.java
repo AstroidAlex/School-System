@@ -1,7 +1,7 @@
 package org.example;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,7 +13,6 @@ public class Assignment {
     private String assignmentName;
     private double weight;
     private ArrayList<Integer> scores;
-
     private static int nextId = 0;
     private double average; //added for calcAssignmentAvg()
 
@@ -23,9 +22,6 @@ public class Assignment {
         this.weight = weight;
         this.scores = new ArrayList<>();
     }
-
-
-
     public void calcAssignmentAvg() {
         if (scores == null || scores.isEmpty()){
             return;
@@ -53,5 +49,4 @@ public class Assignment {
             default -> 0;
         };
     }
-
 }

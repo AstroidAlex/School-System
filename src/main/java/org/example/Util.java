@@ -5,8 +5,7 @@ public class Util {
         if (str == null) {
             return null;
         }
-        String result = " ";
-
+        String result = "";
         String[] parts = str.split(" ");
         for (String part : parts) {
             if (part.isEmpty()) {
