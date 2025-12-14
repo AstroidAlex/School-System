@@ -15,7 +15,6 @@ public class Student {
     @Setter private Address address;
     @Setter private Department department;
     @Setter private ArrayList<Course> registeredCourses; //use method to set
-
     private static int nextId = 0;
 
     public Student(String studentName, Gender gender, Address address,
@@ -41,7 +40,6 @@ public class Student {
         if (!registeredCourses.contains(course)){
             return false;
         }
-
         registeredCourses.remove(course);
         course.getRegisteredStudents().remove(this);
 
@@ -51,12 +49,12 @@ public class Student {
         return String.format("Student Id: %s\n" +
                 "Student name: %s\n" +
                 "Department name: %s\n", studentId, studentName, department.getDepartmentName());
-
     }
     public String toString() {
         String gender = this.gender.toString();
         return String.format("Student Id: %s, Student name: %s,Gender:  %s, Address:  %s," +
-                " Department: %s, Registered courses: %s", studentId, studentName, gender, address, department, registeredCourses);
+                " Department: %s, Registered courses: %s", studentId, studentName, gender, address,
+                department, registeredCourses);
     }
 
     public enum Gender{

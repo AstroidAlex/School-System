@@ -1,5 +1,7 @@
 import org.example.Address;
+import org.example.Course;
 import org.example.Department;
+import org.example.Student;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
@@ -38,6 +40,14 @@ public class Test {
         Assertions.assertEquals(expected, actual);
     }
     @org.junit.jupiter.api.Test
+    @DisplayName("isPostalCodeValid() null -> false")
+    void isPostalCodeValid5() {
+        String postalCode = null;
+        boolean expected = false;
+        boolean actual = Address.isPostalCodeValid(postalCode);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
     @DisplayName("isDepartmentNameValid() DDD -> true")
     void isDepartmentNameValid1() {
         String departmentName = "DDD";
@@ -67,6 +77,47 @@ public class Test {
         String departmentName = "";
         boolean expected = false;
         boolean actual = Department.isDepartmentNameValid(departmentName);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerCourse() student(already in)-> false")
+    void registerCourse1() {
+        Student student = new Student("Katy", Student.Gender.FEMALE, new Address(12, "Main",
+                "Laval", Address.Province.QC, "H1L1n1"), new Department("Math"));
+        Course course = new Course("Prog 1", 3.5, new Department("Math"));
+        boolean expected = false;
+        student.registerCourse(course);
+        boolean actual = student.registerCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerCourse() student(normal)-> true")
+    void registerCourse2() {
+        Student student = new Student("Katy", Student.Gender.FEMALE, new Address(12, "Main",
+                "Laval", Address.Province.QC, "H1L1n1"), new Department("Math"));
+        Course course = new Course("Prog 1", 3.5, new Department("Math"));
+        boolean expected = true;
+        boolean actual = student.registerCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerCourse() student(nulls)-> true")
+    void registerCourse3() {
+        Student student = new Student(null, Student.Gender.FEMALE, new Address(12, null,
+                "Laval", Address.Province.QC, null), new Department(null));
+        Course course = new Course(null, 3.5, new Department(null));
+        boolean expected = true;
+        boolean actual = student.registerCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("registerCourse() student(empties)-> true")
+    void registerCourse4() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        boolean expected = true;
+        boolean actual = student.registerCourse(course);
         Assertions.assertEquals(expected, actual);
     }
 }

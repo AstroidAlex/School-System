@@ -5,7 +5,6 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 @Getter
-@NoArgsConstructor
 public class Department {
     private String departmentId;
     private String departmentName;

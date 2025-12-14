@@ -9,9 +9,7 @@ public class Main {
         c.addAssignment("MidTerm", 30, 100);
         c.addAssignment("Finals", 70, 100);
         Student s1 = new Student("Charles", Student.Gender.MALE, address1, dep1);
-        Student s2 = new Student("Katy", Student.Gender.FEMALE, address1, dep1);
         s1.registerCourse(c);
-        s2.registerCourse(c);
 
         c.displayScores();
     }
