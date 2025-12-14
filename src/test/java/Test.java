@@ -247,4 +247,36 @@ public class Test {
         boolean actual = course.registerStudent(student);
         Assertions.assertEquals(expected, actual);
     }
+    @org.junit.jupiter.api.Test
+    @DisplayName("toTitleCase() 1234 -> 1234")
+    void toTitleCase1() {
+        String str = "1234";
+        String expected = "1234";
+        String actual = Util.toTitleCase(str);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("toTitleCase() null -> null")
+    void toTitleCase2() {
+        String str = null;
+        String expected = null;
+        String actual = Util.toTitleCase(str);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("toTitleCase() my name is matthew and i made THIS -> My Name Is Matthew And I Made This")
+    void toTitleCase3() {
+        String str = "my name is matthew and i made THIS";
+        String expected = "My Name Is Matthew And I Made This";
+        String actual = Util.toTitleCase(str);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("toTitleCase()   ->  ")
+    void toTitleCase4() {
+        String str = " ";
+        String expected = "";
+        String actual = Util.toTitleCase(str);
+        Assertions.assertEquals(expected, actual);
+    }
 }
