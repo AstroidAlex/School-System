@@ -27,12 +27,22 @@ public class Student {
         this.registeredCourses = new ArrayList<>();
     }
 
+    /**
+     * checks if the course is already assigned, and if not, adds the course to the registeredCourses as well as
+     * registers the student to the course
+     * @param course is the course in which the student will be assigned and will be assigned to registeredCourses
+     * @return if the course
+     */
     public boolean registerCourse(Course course){
         if (registeredCourses.contains(course)) {
             return false;
         }
         registeredCourses.add(course);
         course.registerStudent(this);
+        ArrayList<Assignment> assignments = course.getAssignments();
+        for (Assignment assignment : assignments){
+            assignment.getScores().add(null);
+        }
 
         return true;
     }

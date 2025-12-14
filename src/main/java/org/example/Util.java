@@ -1,6 +1,11 @@
 package org.example;
 
 public class Util {
+    /**
+     * Takes a string and seperates it into parts at every space, then uppercases the first letter
+     * @param str is the string that will be put into title case
+     * @return the string in title case for every word
+     */
     public static String toTitleCase(String str){
         if (str == null) {
             return null;

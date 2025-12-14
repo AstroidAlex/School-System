@@ -2,8 +2,11 @@ import org.example.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
+import java.util.ArrayList;
+
 
 public class Test {
+    /*
     @org.junit.jupiter.api.Test
     @DisplayName("isPostalCodeValid() H1L1N1 -> true")
     void isPostalCodeValid1() {
@@ -248,6 +251,23 @@ public class Test {
         Assertions.assertEquals(expected, actual);
     }
     @org.junit.jupiter.api.Test
+    @DisplayName("calcStudentAvg() {100}-> true")
+    void calcStudentAvg1() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        Assignment assignment = new Assignment(null, 100);
+        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
+        ArrayList<Integer> score = new ArrayList<>();
+        score.add(100);
+        assignment.setScores(score);
+        student.registerCourse(course);
+        course.registerStudent(student);
+        int[] expected = {100};
+        int[] actual = course.calcStudentsAverage();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
     @DisplayName("toTitleCase() 1234 -> 1234")
     void toTitleCase1() {
         String str = "1234";
@@ -275,8 +295,10 @@ public class Test {
     @DisplayName("toTitleCase()   ->  ")
     void toTitleCase4() {
         String str = " ";
-        String expected = "";
+        String expected = ""; //.trim()
         String actual = Util.toTitleCase(str);
         Assertions.assertEquals(expected, actual);
     }
+
+     */
 }

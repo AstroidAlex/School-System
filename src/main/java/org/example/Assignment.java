@@ -8,6 +8,7 @@ import java.util.Random;
 
 @Getter
 @EqualsAndHashCode
+@Setter //used for testing the calcStudentsAvg
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
@@ -49,14 +50,18 @@ public class Assignment {
      */
     public void generateRandomScore() {
         Random random = new Random();
-        int score = random.nextInt(0, 10);
-        this.result = switch (score) {
-            case 0 -> random.nextInt(0, 60);
-            case 1,2 -> random.nextInt(60,70);
-            case 3,4 -> random.nextInt(70,80);
-            case 5,6,7,8 -> random.nextInt(80,90);
-            case 9,10 -> random.nextInt(90,100);
-            default -> 0;
-        };
+        for (int i = 0; i < scores.size(); i++){
+            int score = random.nextInt(0, 10);
+            this.result = switch (score) {
+                case 0 -> random.nextInt(0, 60);
+                case 1,2 -> random.nextInt(60,70);
+                case 3,4 -> random.nextInt(70,80);
+                case 5,6,7,8 -> random.nextInt(80,90);
+                case 9,10 -> random.nextInt(90,100);
+                default -> 0;
+            };
+            scores.set(i , this.result);
+        }
+
     }
 }

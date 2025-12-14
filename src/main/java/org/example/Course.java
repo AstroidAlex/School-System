@@ -1,11 +1,8 @@
 package org.example;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 @EqualsAndHashCode
 @Getter
@@ -28,6 +25,10 @@ public class Course {
         this.registeredStudents = new ArrayList<>();
     }
 
+    /**
+     * Makes sure all assignments in the ArrayList assignments have a combined weight that is equal to 100
+     * @return if the sum of the weights of each assignment result in 100
+     */
     public boolean isAssignmentWeightValid(){
         double total = 0;
         for(Assignment assignment : assignments){;
@@ -35,11 +36,18 @@ public class Course {
         }
         return total == 100;
     }
+
+    /**
+     * confirms that a student can be registered as well as registers them to the course
+     * @param student
+     * @return
+     */
     public boolean registerStudent(Student student){
         if (registeredStudents.contains(student)){
             return false;
         }
         this.registeredStudents.add(student);
+        student.registerCourse(this);
         for (Assignment assignment : assignments) {
             assignment.getScores().add(null);
         }
@@ -48,7 +56,6 @@ public class Course {
     public int[] calcStudentsAverage() {
         int studentCount = registeredStudents.size();
         int[] finalScores = new int[studentCount];
-
         for (int i = 0; i < studentCount; i++){
             double total = 0;
             for (Assignment assignment : assignments) {
@@ -63,18 +70,22 @@ public class Course {
         return finalScores;
     }
     public boolean addAssignment(String assignmentName, double weight, int maxScore){
+
         Assignment assignment = new Assignment(assignmentName, weight);
         assignments.add(assignment);
         /* commented due to the randomness causing occasional errors
         if (assignment.getResult() > maxScore) {  //added next to method to show an example of how it would work
             return false;
         }
-         */
+
         for (int i = 0; i < registeredStudents.size(); i++){
             assignment.getScores().add(null);
         }
+
+         */
         return true;
     }
+
     public void generateScores(){
         for (Assignment assignment : assignments){
             assignment.generateRandomScore();
@@ -92,21 +103,22 @@ public class Course {
                 System.out.printf("%15s",assignment.getAssignmentName());
             }
         }
-            System.out.printf("%25s", "Final Score\n");
-            int[] finalScores = calcStudentsAverage();
+        System.out.printf("%25s", "Final Score\n");
+        int[] finalScores = calcStudentsAverage();
 
-            for (int i = 0; i < registeredStudents.size(); i++){
-                Student student = registeredStudents.get(i);
-                System.out.printf("%15s", student.getStudentName());
+        for (int i = 0; i < registeredStudents.size(); i++){
+            Student student = registeredStudents.get(i);
+            System.out.printf("%15s", student.getStudentName());
 
-                for (Assignment assignment : assignments) {
-                    Integer score = assignment.getScores().get(i);
-                    System.out.printf("%15s", score);
-                }
-                System.out.printf("%24d\n", finalScores[i]);
+            for (Assignment assignment : assignments) {
+                Integer score = assignment.getScores().get(i);
+                System.out.printf("%15s", score);
             }
+            System.out.printf("%24d\n", finalScores[i]);
+        }
         System.out.printf("%15s", "Average");
         for (Assignment assignment : assignments) {
+            assignment.calcAssignmentAvg();
             System.out.printf("%15.0f", assignment.getAverage());
         }
     }
