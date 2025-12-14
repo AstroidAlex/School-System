@@ -1,10 +1,15 @@
 package org.example;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
+@EqualsAndHashCode
 @Getter
+@Setter
 public class Course {
     private String courseId;
     private String courseName;
@@ -66,5 +71,37 @@ public class Course {
             assignment.getScores().add(null);
         }
         return true;
+    }
+    public void generateScores(){
+
+        for (Assignment assignment : assignments){
+            assignment.generateRandomScore();
+        }
+        calcStudentsAverage();
+    }
+    public void displayScores(){
+        System.out.printf("Course: %s(%s)\n", courseName, courseId);
+        for (Assignment assignment : assignments) {
+            System.out.printf("%-15s",assignment.getAssignmentName());
+        }
+            System.out.printf("%-15s", "Final Score");
+            int[] finalScores = calcStudentsAverage();
+
+            for (int i = 0; i < registeredStudents.size(); i++){
+                Student student = registeredStudents.get(i);
+                System.out.printf("%-20s", student.getStudentName());
+
+                for (Assignment assignment : assignments) {
+                    Integer score = assignment.getScores().get(i);
+                    System.out.printf("%-15s", score);
+                }
+
+                System.out.printf("%-15d", finalScores[i]);
+            }
+        System.out.printf("%-20s", "Average");
+        for (Assignment assignment : assignments) {
+            System.out.printf("%-15.0f\n", assignment.getAverage());
+
+        }
     }
 }

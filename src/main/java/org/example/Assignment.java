@@ -15,6 +15,7 @@ public class Assignment {
     private ArrayList<Integer> scores;
 
     private static int nextId = 0;
+    private double average; //added for calcAssignmentAvg()
 
     public Assignment(String assignmentName, double weight) {
         this.assignmentId = String.format("%d", nextId++);
@@ -22,6 +23,8 @@ public class Assignment {
         this.weight = weight;
         this.scores = new ArrayList<>();
     }
+
+
 
     public void calcAssignmentAvg() {
         if (scores == null || scores.isEmpty()){
@@ -35,7 +38,7 @@ public class Assignment {
                 count++;
             }
         }
-        double avg = (count == 0) ? 0 : (double) total / count;
+        this.average = (count == 0) ? 0 : (double) total / count;
         //avg remains unused due to constraints imposed by instructions
     }
     public void generateRandomScore() {
