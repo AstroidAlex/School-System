@@ -120,4 +120,47 @@ public class Test {
         boolean actual = student.registerCourse(course);
         Assertions.assertEquals(expected, actual);
     }
+    @org.junit.jupiter.api.Test
+    @DisplayName("dropCourse() student(already out)-> false")
+    void dropCourse1() {
+        Student student = new Student("Katy", Student.Gender.FEMALE, new Address(12, "Main",
+                "Laval", Address.Province.QC, "H1L1n1"), new Department("Math"));
+        Course course = new Course("Prog 1", 3.5, new Department("Math"));
+        boolean expected = false;
+        boolean actual = student.dropCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("dropCourse() student(normal)-> true")
+    void dropCourse2() {
+        Student student = new Student("Katy", Student.Gender.FEMALE, new Address(12, "Main",
+                "Laval", Address.Province.QC, "H1L1n1"), new Department("Math"));
+        Course course = new Course("Prog 1", 3.5, new Department("Math"));
+        boolean expected = true;
+        student.registerCourse(course);
+        boolean actual = student.dropCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("dropCourse() student(nulls)-> true")
+    void dropCourse3() {
+        Student student = new Student(null, Student.Gender.FEMALE, new Address(12, null,
+                "Laval", Address.Province.QC, null), new Department(null));
+        Course course = new Course(null, 3.5, new Department(null));
+        boolean expected = true;
+        student.registerCourse(course);
+        boolean actual = student.dropCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("dropCourse() student(empties)-> true")
+    void dropCourse4() {
+        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
+                "", Address.Province.QC, ""), new Department(""));
+        Course course = new Course("", 3.5, new Department(""));
+        boolean expected = true;
+        student.registerCourse(course);
+        boolean actual = student.dropCourse(course);
+        Assertions.assertEquals(expected, actual);
+    }
 }
