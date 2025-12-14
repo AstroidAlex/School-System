@@ -24,8 +24,19 @@ public class Assignment {
     }
 
     public void calcAssignmentAvg() {
-
-        return;
+        if (scores == null || scores.isEmpty()){
+            return;
+        }
+        int total = 0; //initalize total
+        int count = 0; //initialize quantity for denominator in avg
+        for (Integer score : scores){
+            if (score != null) {
+                total += score;
+                count++;
+            }
+        }
+        double avg = (count == 0) ? 0 : (double) total / count;
+        //avg remains unused due to constraints imposed by instructions
     }
     public void generateRandomScore() {
         Random random = new Random();
