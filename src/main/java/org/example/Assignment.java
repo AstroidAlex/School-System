@@ -22,6 +22,10 @@ public class Assignment {
         this.weight = weight;
         this.scores = new ArrayList<>();
     }
+
+    /**
+     * Despite the method being void, it updates the this.average to work with the displayScore() in Course
+     */
     public void calcAssignmentAvg() {
         if (scores == null || scores.isEmpty()){
             return;
@@ -35,9 +39,14 @@ public class Assignment {
             }
         }
         this.average = (count == 0) ? 0 : (double) total / count;
-        //avg remains unused due to constraints imposed by instructions
     }
-    private int result; //used to show an example of how to use maxscore in course.addAssignment
+
+    private int result; //used to show an example of how to use maxScore in course.addAssignment
+
+    /**
+     * it does not directly return any value that is used however, this.result is used to show a potential usage
+     * in the course.addAssignment(), to give a usage to maxScore.
+     */
     public void generateRandomScore() {
         Random random = new Random();
         int score = random.nextInt(0, 10);
