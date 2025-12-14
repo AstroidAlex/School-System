@@ -16,11 +16,11 @@ public class Assignment {
 
     private static int nextId = 0;
 
-    public Assignment(String assignmentName, double weight, ArrayList<Integer> scores) {
+    public Assignment(String assignmentName, double weight) {
         this.assignmentId = String.format("%d", nextId++);
         this.assignmentName = assignmentName;
         this.weight = weight;
-        this.scores = scores;
+        this.scores = new ArrayList<>();
     }
 
     public void calcAssignmentAvg() {

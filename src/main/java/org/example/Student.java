@@ -19,7 +19,7 @@ public class Student {
     private static int nextId = 0;
 
     public Student(String studentName, Gender gender, Address address,
-                   Department department, ArrayList<Course> registeredCourses) {
+                   Department department) {
         this.studentId = String.format("S%05d", nextId++);
         this.studentName = Util.toTitleCase(studentName);
         this.gender = gender;

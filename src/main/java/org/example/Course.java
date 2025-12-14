@@ -15,31 +15,56 @@ public class Course {
 
     private static int nextId = 0;
 
-    public Course(String courseName, double credits, Department department,
-                  ArrayList<Assignment> assignments, ArrayList<Student> registeredStudents) {
+    public Course(String courseName, double credits, Department department) {
         this.courseId = String.format("C-%s-%d", department.getDepartmentId(), nextId++); //confirm using string is ok
         this.courseName = Util.toTitleCase(courseName);
         this.credits = credits;
         this.department = department;
-        this.assignments = assignments;
-        this.registeredStudents = registeredStudents;
+        this.assignments = new ArrayList<>();
+        this.registeredStudents = new ArrayList<>();
     }
 
     public boolean isAssignmentWeightValid(){
-        int total = 0;
-
-        return total % 100 == 0;
+        double total = 0;
+        for(Assignment assignment : assignments){;
+            total += assignment.getWeight();
+        }
+        return total == 100;
     }
     public boolean registerStudent(Student student){
+        if (registeredStudents.contains(student)){
+            return false;
+        }
         this.registeredStudents.add(student);
+        for (Assignment assignment : assignments) {
+            assignment.getScores().add(null);
+        }
 
         return true;
     }
     public int[] calcStudentsAverage() {
-       int[] result = new int[1]; //temporary
-        return result;
+        int studentCount = registeredStudents.size();
+        int[] finalScores = new int[studentCount];
+        for (int i = 0; i < studentCount; i++){
+            double total = 0;
+            for (Assignment assignment : assignments) {
+                Integer score = assignment.getScores().get(i); //Integer instead of int to avoid issues with null
+                if (score != null) {
+                    total += score * (assignment.getWeight() / 100.0);
+                }
+            }
+            finalScores[i] = (int)Math.round(total);
+        }
+
+        return finalScores;
     }
     public boolean addAssignment(String assignmentName, double weight, int maxScore){
-        this.assignments.add(new Assignment(assignmentName, weight, maxScore));
+        Assignment assignment = new Assignment(assignmentName, weight);
+
+        assignments.add(assignment);
+        for (int i = 0; i < registeredStudents.size(); i++){
+            assignment.getScores().add(null);
+        }
+        return true;
     }
 }
