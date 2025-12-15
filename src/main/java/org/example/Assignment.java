@@ -2,13 +2,14 @@ package org.example;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 @Getter
 @EqualsAndHashCode
-@Setter //used for testing the calcStudentsAvg
+@ToString //used for toString() in course
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
@@ -41,7 +42,6 @@ public class Assignment {
                 count++;
             }
         }
-
         this.average = (count == 0) ? 0 : (double) total / count;
     }
 
@@ -66,6 +66,5 @@ public class Assignment {
 
             scores.set(i, result);
         }
-
     }
 }

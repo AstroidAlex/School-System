@@ -17,7 +17,7 @@ public class Course {
     private static int nextId = 0;
 
     public Course(String courseName, double credits, Department department) {
-        this.courseId = String.format("C-%s-%d", department.getDepartmentId(), nextId++);
+        this.courseId = String.format("C-%s-%02d", department.getDepartmentId(), nextId++);
         this.courseName = Util.toTitleCase(courseName);
         this.credits = credits;
         this.department = department;
@@ -53,6 +53,12 @@ public class Course {
         }
         return true;
     }
+
+    /**
+     * takes the registerStudents size, makes an array of such length, then calculates the final scores based on the
+     * weight of each assignment
+     * @return the rounded to an int final score of all assignments combined then divided by the quantity.
+     */
     public int[] calcStudentsAverage() {
         int studentCount = registeredStudents.size();
         int[] finalScores = new int[studentCount];
@@ -69,6 +75,15 @@ public class Course {
 
         return finalScores;
     }
+
+    /**
+     * Takes Information of an assignment then adds it to the course accordingly
+     * @param assignmentName is the name of the assignment
+     * @param weight is the weight of the assingment (for the final score)
+     * @param maxScore is unused but could be used if unit testing didn't require a consistent output
+     *                 (usage commented out)
+     * @return If adding the assignment worked or not
+     */
     public boolean addAssignment(String assignmentName, double weight, int maxScore){
 
         Assignment assignment = new Assignment(assignmentName, weight);
@@ -83,6 +98,9 @@ public class Course {
         return true;
     }
 
+    /**
+     * takes the quanity of assignments and runs the generateRandomScore() method as well as the calcAssignmentAvg()
+     */
     public void generateScores(){
             for (Assignment assignment : assignments){
                 assignment.generateRandomScore();
@@ -90,6 +108,10 @@ public class Course {
                 assignment.calcAssignmentAvg();
             }
     }
+
+    /**
+     * Displays the scores, students, course, department and assignments in an easy to read format
+     */
     public void displayScores(){
         System.out.printf("Course: %s(%s)\n", courseName, courseId);
         int count = 0; //used for moving the first assignment more to the right
@@ -120,15 +142,20 @@ public class Course {
             System.out.printf("%15.0f", assignment.getAverage());
         }
     }
+
+    /**
+     * is a way to read the string that simple to read
+     * @return the string formated with simple information.
+     */
     public String toSimplifiedString() {
-        return String.format("Course id: %s, Course name: %s, Credits: %f, Department name: %s",
+        return String.format("\nCourse id: %s, Course name: %s, Credits: %f, Department name: %s",
                 courseId, courseName, credits, department.getDepartmentName());
     }
     public String toSting() {
         for (Student student : registeredStudents) {
-            return String.format("Course id: %s, Course name: %s, Credits: %f, Department name: %s, " +
-                            "Assignments: %s, Registered students: %s, %s, %s -%b\n", courseId, courseName, credits,
-                    department.getDepartmentName(), assignments, student.getStudentId(), student.getStudentName(),
+            return String.format("\nCourse id: %s, Course name: %s, Credits: %f, Department name: %s, " +
+                            "Assignments: %s, Registered students: %s, %s, %s -%b", courseId, courseName, credits,
+                    department.getDepartmentName(), assignments.toString(), student.getStudentId(), student.getStudentName(),
                     department.getDepartmentName(), isAssignmentWeightValid());
         }
         return "";

@@ -43,6 +43,12 @@ public class Student {
 
         return true;
     }
+
+    /**
+     * Removes a student from a course and checks for errors
+     * @param course is the course that the student is removed from
+     * @return
+     */
     public boolean dropCourse(Course course) {
         if (!registeredCourses.contains(course)){
             return false;
@@ -52,16 +58,25 @@ public class Student {
 
         return true;
     }
+
+    /**
+     * Takes studentId, studentName and departmentName into a single string
+     * @return the elements above into a single string using string.format()
+     */
     public String toSimplifiedString(){
-        return String.format("Student Id: %s\n" +
-                "Student name: %s\n" +
-                "Department name: %s\n", studentId, studentName, department.getDepartmentName());
+        return String.format("\nStudent Id: %s, Student name: %s, Department name: %s\n",
+                studentId, studentName, department.getDepartmentName());
     }
+
+    /**
+     * Takes studentId, studentName, gender, address, department and registeredCourses into a single string
+     * @return the elements above into a single string using string.format()
+     */
     public String toString() {
         String gender = this.gender.toString();
-        return String.format("Student Id: %s, Student name: %s,Gender:  %s, Address:  %s," +
-                " Department: %s, Registered courses: %s", studentId, studentName, gender, address,
-                department, registeredCourses);
+        return String.format("\nStudent Id: %s, Student name: %s,Gender:  %s, Address:  %s," +
+                " Department: %s, Registered courses: %s", studentId, studentName, gender, address.toString(),
+                department.toString(), registeredCourses);
     }
 
     public enum Gender{

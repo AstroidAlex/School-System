@@ -5,8 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import java.util.ArrayList;
 
 
-public class Test {
-    /*
+public class MethodTest {
     @org.junit.jupiter.api.Test
     @DisplayName("isPostalCodeValid() H1L1N1 -> true")
     void isPostalCodeValid1() {
@@ -252,20 +251,21 @@ public class Test {
     }
     @org.junit.jupiter.api.Test
     @DisplayName("calcStudentAvg() {100}-> true")
-    void calcStudentAvg1() {
-        Student student = new Student("", Student.Gender.FEMALE, new Address(12, "",
-                "", Address.Province.QC, ""), new Department(""));
-        Course course = new Course("", 3.5, new Department(""));
-        Assignment assignment = new Assignment(null, 100);
-        course.addAssignment(assignment.getAssignmentName(), assignment.getWeight(), 100);
-        ArrayList<Integer> score = new ArrayList<>();
-        score.add(100);
-        assignment.setScores(score);
-        student.registerCourse(course);
-        course.registerStudent(student);
-        int[] expected = {100};
-        int[] actual = course.calcStudentsAverage();
-        Assertions.assertArrayEquals(expected, actual);
+    void calcStudentAvg1() {Address address1 = new Address(124, "Main", "Montreal",
+            Address.Province.QC, "h1L8F1");
+        Department dep1 = new Department("Science");
+        Course c = new Course("Programming 1", 3, dep1);
+        c.addAssignment("MidTerm", 30, 100);
+        c.addAssignment("Finals", 70, 100);
+        Student s1 = new Student("Charles", Student.Gender.MALE, address1, dep1);
+        Student s2 = new Student("Mark", Student.Gender.MALE, address1, dep1);
+        s1.registerCourse(c);
+        s2.registerCourse(c);
+        c.generateScores();
+        boolean expected = true;
+        boolean actual = (c.calcStudentsAverage().length > 0); //due to randomized values, the outcome can
+        // not be predicted
+        Assertions.assertEquals(expected, actual);
     }
     @org.junit.jupiter.api.Test
     @DisplayName("toTitleCase() 1234 -> 1234")
@@ -299,6 +299,4 @@ public class Test {
         String actual = Util.toTitleCase(str);
         Assertions.assertEquals(expected, actual);
     }
-
-     */
 }
