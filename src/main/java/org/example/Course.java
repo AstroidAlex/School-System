@@ -93,8 +93,6 @@ public class Course {
             return false;
         }
         */
-
-
         return true;
     }
 

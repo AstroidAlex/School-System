@@ -11,7 +11,6 @@ public class Department {
 
     private static int nextId = 0;
 
-
     public void setDepartmentName(String departmentName) {
         this.departmentName = isDepartmentNameValid(departmentName) ? departmentName : null;
     }
@@ -38,6 +37,4 @@ public class Department {
 
         return true;
     }
-
-
 }
