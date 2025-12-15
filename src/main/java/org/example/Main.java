@@ -15,6 +15,7 @@ public class Main {
         c.generateScores();
 
         c.displayScores();
+        // unused toStrings visual confirmation that they work
         System.out.println(c.toSimplifiedString());
         System.out.println(c.toSting());
         System.out.println(s2.toSimplifiedString());
