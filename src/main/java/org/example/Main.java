@@ -16,9 +16,13 @@ public class Main {
         s1.registerCourse(c);
         s2.registerCourse(c);
         c.generateScores();
-        int[] averages = c.calcStudentsAverage();
+        c.calcStudentsAverage();
+
 
         c.displayScores();
+
+        //System.out.println("\n\n\n");
+
 
         /*
         Address address1 = new Address(124, "Main", "Montreal", Address.Province.QC, "h1L8F1");

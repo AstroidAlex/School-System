@@ -77,12 +77,12 @@ public class Course {
         if (assignment.getResult() > maxScore) {  //added next to method to show an example of how it would work
             return false;
         }
-
+        */
         for (int i = 0; i < registeredStudents.size(); i++){
             assignment.getScores().add(null);
         }
 
-         */
+
         return true;
     }
 
@@ -90,7 +90,11 @@ public class Course {
         for (Assignment assignment : assignments){
             assignment.generateRandomScore();
         }
-        calcStudentsAverage();
+        for (Assignment assignment : assignments){
+            assignment.calcAssignmentAvg();
+
+        }
+
     }
     public void displayScores(){
         System.out.printf("Course: %s(%s)\n", courseName, courseId);
@@ -104,6 +108,7 @@ public class Course {
             }
         }
         System.out.printf("%25s", "Final Score\n");
+
         int[] finalScores = calcStudentsAverage();
 
         for (int i = 0; i < registeredStudents.size(); i++){
@@ -118,7 +123,6 @@ public class Course {
         }
         System.out.printf("%15s", "Average");
         for (Assignment assignment : assignments) {
-            assignment.calcAssignmentAvg();
             System.out.printf("%15.0f", assignment.getAverage());
         }
     }

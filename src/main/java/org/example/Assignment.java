@@ -29,16 +29,19 @@ public class Assignment {
      */
     public void calcAssignmentAvg() {
         if (scores == null || scores.isEmpty()){
+            this.average = 0;
             return;
         }
         int total = 0; //initalize total
         int count = 0; //initialize quantity for denominator in avg
+
         for (Integer score : scores){
             if (score != null) {
                 total += score;
                 count++;
             }
         }
+
         this.average = (count == 0) ? 0 : (double) total / count;
     }
 
@@ -60,7 +63,7 @@ public class Assignment {
                 case 9,10 -> random.nextInt(90,100);
                 default -> 0;
             };
-            scores.set(i , this.result);
+            scores.set(i, this.result);
         }
 
     }
