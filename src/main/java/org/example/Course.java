@@ -78,23 +78,17 @@ public class Course {
             return false;
         }
         */
-        for (int i = 0; i < registeredStudents.size(); i++){
-            assignment.getScores().add(null);
-        }
 
 
         return true;
     }
 
     public void generateScores(){
-        for (Assignment assignment : assignments){
-            assignment.generateRandomScore();
-        }
-        for (Assignment assignment : assignments){
-            assignment.calcAssignmentAvg();
+            for (Assignment assignment : assignments){
+                assignment.generateRandomScore();
 
-        }
-
+                assignment.calcAssignmentAvg();
+            }
     }
     public void displayScores(){
         System.out.printf("Course: %s(%s)\n", courseName, courseId);

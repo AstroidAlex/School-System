@@ -40,9 +40,6 @@ public class Student {
         registeredCourses.add(course);
         course.registerStudent(this);
         ArrayList<Assignment> assignments = course.getAssignments();
-        for (Assignment assignment : assignments){
-            assignment.getScores().add(null);
-        }
 
         return true;
     }
