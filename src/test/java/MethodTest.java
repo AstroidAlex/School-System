@@ -2,9 +2,6 @@ import org.example.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
-import java.util.ArrayList;
-
-
 public class MethodTest {
     @org.junit.jupiter.api.Test
     @DisplayName("isPostalCodeValid() H1L1N1 -> true")
