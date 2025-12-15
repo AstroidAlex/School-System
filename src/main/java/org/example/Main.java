@@ -2,7 +2,8 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        Address address1 = new Address(124, "Main", "Montreal", Address.Province.QC, "h1L8F1");
+        Address address1 = new Address(124, "Main", "Montreal", Address.Province.QC,
+                "h1L8F1");
         Department dep1 = new Department("Science");
         Course c = new Course("Programming 1", 3, dep1);
         c.addAssignment("MidTerm", 30, 100);

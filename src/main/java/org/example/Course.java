@@ -153,8 +153,8 @@ public class Course {
         for (Student student : registeredStudents) {
             return String.format("\nCourse id: %s, Course name: %s, Credits: %f, Department name: %s, " +
                             "Assignments: %s, Registered students: %s, %s, %s -%b", courseId, courseName, credits,
-                    department.getDepartmentName(), assignments.toString(), student.getStudentId(), student.getStudentName(),
-                    department.getDepartmentName(), isAssignmentWeightValid());
+                    department.getDepartmentName(), assignments.toString(), student.getStudentId(),
+                    student.getStudentName(), department.getDepartmentName(), isAssignmentWeightValid());
         }
         return "";
     }
